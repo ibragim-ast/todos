@@ -1,0 +1,15 @@
+.header {
+  width: 89%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  width: 38px;
+  display: block;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  object-position: center;
+}
