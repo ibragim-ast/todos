@@ -1,45 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import './App.css';
 import Header from '../Header/Header';
 import TodoInput from '../TodoInput/TodoInput';
 import Footer from '../Footer/Footer';
 import TodoList from '../TodoList/TodoList';
+import TodoListActions from '../TodoListActions/TodoListActions';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('all');
+
+  const handleShowAll = () => {
+    setFilter('all');
+  };
+
+  const handleShowActive = () => {
+    setFilter('active');
+  };
+
+  const handleShowCompleted = () => {
+    setFilter('completed');
+  };
+
+  const handleDeleteCompleted = () => {
+    const updatedTasks = tasks.filter((task) => !task.isComplete);
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  };
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'active') {
+      return !task.isComplete;
+    }
+    if (filter === 'completed') {
+      return task.isComplete;
+    }
+    return true;
+  });
+
+  const updateTask = (updatedTask) => {
+    const updatedTasks = tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task));
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  };
 
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem('tasks'));
-    if (savedTasks) {
+    if (savedTasks && Array.isArray(savedTasks)) {
       setTasks(savedTasks);
     }
   }, []);
+
+  const countUncompletedTasks = () => tasks.filter((item) => !item.isComplete).length;
+
+  const uncompletedTasksCount = countUncompletedTasks();
 
   return (
     <div className="app">
       <Header />
       <TodoInput tasks={tasks} setTasks={setTasks} />
-      <TodoList tasks={tasks} />
+      <TodoList tasks={tasks} updateTask={updateTask} filteredTasks={filteredTasks} />
+      <TodoListActions
+        uncompletedTasksCount={uncompletedTasksCount}
+        handleShowAll={handleShowAll}
+        handleShowActive={handleShowActive}
+        handleShowCompleted={handleShowCompleted}
+        handleDeleteCompleted={handleDeleteCompleted}
+      />
       <Footer />
     </div>
   );
 }
-
-App.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  tasks: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-      isComplete: PropTypes.bool.isRequired,
-      // eslint-disable-next-line comma-dangle
-    })
-  ),
-};
-
-App.defaultProps = {
-  tasks: [],
-};
 
 export default App;

@@ -26,7 +26,7 @@ function TodoInput({ tasks, setTasks }) {
         id="taskInput"
         value={task}
         onChange={handleInputChange}
-        placeholder="Введите новую задачу"
+        placeholder="Что нужно сделать?"
         required
       />
       <button

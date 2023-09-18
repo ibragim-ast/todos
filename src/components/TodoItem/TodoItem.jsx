@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './TodoItem.css';
 
-function TodoItem({ task }) {
+// eslint-disable-next-line react/prop-types
+function TodoItem({ task, updateTask }) {
   const [isChecked, setIsChecked] = useState(task.isComplete);
 
   useEffect(() => {
@@ -10,7 +11,9 @@ function TodoItem({ task }) {
   }, [task.isComplete]);
 
   const handleCheckboxChange = () => {
+    const updatedTask = { ...task, isComplete: !isChecked };
     setIsChecked(!isChecked);
+    updateTask(updatedTask);
   };
 
   return (
