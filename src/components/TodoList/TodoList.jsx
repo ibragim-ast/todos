@@ -5,7 +5,7 @@ import TodoItem from '../TodoItem/TodoItem';
 
 function TodoList({ tasks }) {
   return (
-    <ul>
+    <ul className="todo-list">
       {tasks.map((task) => (
         <li key={task.id}>
           <TodoItem task={task} />

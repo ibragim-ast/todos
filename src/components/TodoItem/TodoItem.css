@@ -1,0 +1,37 @@
+.todo-item__checkbox {
+  display: none;
+}
+
+.todo-item__container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+  width: 98%;
+  margin: 0 auto;
+  line-height: 30px;
+}
+
+.todo-item__custom-checkbox {
+  font-size: 24px;
+  line-height: 30px;
+  color: #5d5d5d;
+}
+
+.todo-item__custom-checkbox::before {
+  content: '';
+  display: inline-block;
+  width: 29px;
+  height: 29px;
+  border: 1px solid #d8e6e3;
+  border-radius: 50%;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.todo-item__checkbox:checked + .todo-item__custom-checkbox::before {
+  background-image: url(../../assets/images/pngwing.com.png);
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

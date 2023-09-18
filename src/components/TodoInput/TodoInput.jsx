@@ -38,7 +38,7 @@ function TodoInput({ tasks, setTasks }) {
         onClick={handleAddTask}
         aria-label="Добавить задачу"
       >
-        Добавить
+        &crarr;
       </button>
     </div>
   );
