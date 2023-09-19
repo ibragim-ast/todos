@@ -17,16 +17,29 @@
     font-size: 12px;
     padding: 20px 10px;
     height: 15px;
+    cursor: pointer;
+    transition: border-bottom 0.3s ease;
 }
 
 .todo-list-actions__button.active {
-    border-bottom: 1px solid #8147f5;
+    color: #8147f5;
+}
+
+.todo-list-actions__button:hover {
+    color: #8147f5;
+    transition: color 0.3s ease;
 }
 
 .todo-list-actions__delete-button {
-    padding-left: 100px;
+    margin-left: 85px;
     border: none;
     font-size: 12px;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.todo-list-actions__delete-button:hover {
+    color: red;
+    transition: color 0.3s ease;
 }
 
