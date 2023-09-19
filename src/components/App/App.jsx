@@ -58,15 +58,20 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <TodoInput tasks={tasks} setTasks={setTasks} />
-      <TodoList tasks={tasks} updateTask={updateTask} filteredTasks={filteredTasks} />
-      <TodoListActions
-        uncompletedTasksCount={uncompletedTasksCount}
-        handleShowAll={handleShowAll}
-        handleShowActive={handleShowActive}
-        handleShowCompleted={handleShowCompleted}
-        handleDeleteCompleted={handleDeleteCompleted}
-      />
+      <div className="main-content">
+        <TodoInput tasks={tasks} setTasks={setTasks} />
+        <div className="main__todo-list-container">
+          <TodoList tasks={tasks} updateTask={updateTask} filteredTasks={filteredTasks} />
+        </div>
+        <TodoListActions
+          uncompletedTasksCount={uncompletedTasksCount}
+          handleShowAll={handleShowAll}
+          handleShowActive={handleShowActive}
+          handleShowCompleted={handleShowCompleted}
+          handleDeleteCompleted={handleDeleteCompleted}
+          activeFilter={filter}
+        />
+      </div>
       <Footer />
     </div>
   );

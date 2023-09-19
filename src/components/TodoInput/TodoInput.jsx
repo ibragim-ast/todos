@@ -18,6 +18,12 @@ function TodoInput({ tasks, setTasks }) {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleAddTask();
+    }
+  };
+
   return (
     <div className="todo-input">
       <input
@@ -25,8 +31,9 @@ function TodoInput({ tasks, setTasks }) {
         type="text"
         id="taskInput"
         value={task}
+        onKeyDown={handleKeyPress}
         onChange={handleInputChange}
-        placeholder="Что нужно сделать?"
+        placeholder="введите новую задачу"
         required
       />
       <button

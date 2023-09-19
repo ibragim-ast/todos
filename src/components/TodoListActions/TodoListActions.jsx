@@ -9,24 +9,25 @@ function TodoListActions({
   handleShowActive,
   handleShowCompleted,
   handleDeleteCompleted,
+  activeFilter,
 }) {
   return (
     <div className="todo-list-actions">
-      <p>
-        осталось задач:
-        {uncompletedTasksCount}
+      <p className="todo-list-actions__left-tasks-text">
+        {`осталось задач: 
+        ${uncompletedTasksCount}`}
       </p>
-      <button className="todo-list-actions__button" type="submit" onClick={handleShowAll}>
-        все
+      <button className={`todo-list-actions__button ${activeFilter === 'all' ? 'active' : ''}`} type="submit" onClick={handleShowAll}>
+        Все
       </button>
-      <button className="todo-list-actions__button" type="submit" onClick={handleShowActive}>
-        активные
+      <button className={`todo-list-actions__button ${activeFilter === 'active' ? 'active' : ''}`} type="submit" onClick={handleShowActive}>
+        Активные
       </button>
-      <button className="todo-list-actions__button" type="submit" onClick={handleShowCompleted}>
-        завершенные
+      <button className={`todo-list-actions__button ${activeFilter === 'completed' ? 'active' : ''}`} type="submit" onClick={handleShowCompleted}>
+        Завершенные
       </button>
-      <button className="todo-list-actions__button" type="submit" onClick={handleDeleteCompleted}>
-        удалить завершенные
+      <button className="todo-list-actions__delete-button" type="submit" onClick={handleDeleteCompleted}>
+        Удалить завершенные
       </button>
     </div>
   );
